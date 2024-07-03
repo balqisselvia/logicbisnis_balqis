@@ -1,0 +1,31 @@
+<!-- pinjam.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan B - Pinjam Buku</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Pinjam Buku</h1>
+    <div class="order">
+        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+        <form method="POST" action="{{ url_for('submit_pinjam') }}">
+            <input type="hidden" name="book_code" value="{{ item.code }}">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="borrow_date">Tanggal Pinjam:</label>
+            <input type="date" id="borrow_date" name="borrow_date" required><br>
+            <label for="book_code">Kode Buku:</label>
+            <input type="text" id="book_code" name="book_code" value="{{ item.code }}" readonly><br>
+            <label for="address">Alamat:</label>
+            <input type="text" id="address" name="address" required><br>
+            <label for="phone_number">Nomor HP:</label>
+            <input type="text" id="phone_number" name="phone_number" pattern="[0-9]{10,12}" title="Nomor HP harus terdiri dari 10 hingga 12 digit angka" required><br>
+            <button type="submit">Pinjam</button>
+        </form>
+    </div>
+    <a href="{{ url_for('index') }}">Kembali</a>
+</body>
+</html>

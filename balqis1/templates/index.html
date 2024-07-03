@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan B</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Perpustakaan B</h1>
+
+    <!-- Kolom Pencarian -->
+    <form method="GET" action="{{ url_for('index') }}">
+        <input type="text" name="search" placeholder="Cari buku...">
+        <button type="submit">Cari</button>
+    </form>
+
+    <div class="items">
+        {% for item in items %}
+        <div class="item">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+            <p>{{ item.name }}</p>
+            <a href="{{ url_for('pinjam', item_name=item.name) }}">Pinjam</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
